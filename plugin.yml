@@ -1,0 +1,14 @@
+name: Minecraft Classes
+main: me.jestercraftgaming.classes.Main
+version: 1.7
+description: >
+             Minecraft Classes adds a whole lot of comands for your roleplay needs.
+commands:
+    MinecraftClasses:
+      description: Full info for MinecraftClasses.
+    Race:
+      description: Give the user the ability to select his/her race.
+    Class:
+      description: Give the user the ability to select his/her class.
+    Specialization:
+      description: Give the user the ability to select his/her specialization.
