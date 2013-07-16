@@ -3,7 +3,7 @@ package me.jestercraftgaming.classes.listeners;
 import java.io.File;
 import java.util.List;
 
-import me.jestercraftgaming.classes.Main;
+import me.jestercraftgaming.classes.MinecraftClasses;
 import me.jestercraftgaming.classes.config.PlayerConfigHandler;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,9 +13,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener{
-	Main main;
+	MinecraftClasses main;
 	//Constuctor
-	public PlayerListener(Main main){
+	public PlayerListener(MinecraftClasses main){
 		this.main = main;
 	}
 	//Handeler

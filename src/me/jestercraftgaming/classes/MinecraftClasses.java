@@ -1,7 +1,10 @@
 package me.jestercraftgaming.classes;
 
-import java.util.logging.Logger;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
+import me.jestercraftgaming.classes.config.ConfigHandler;
 import me.jestercraftgaming.classes.config.PlayerConfigHandler;
 import me.jestercraftgaming.classes.listeners.PlayerDeathListener;
 import me.jestercraftgaming.classes.listeners.PlayerListener;
@@ -12,39 +15,63 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin{
+public class MinecraftClasses extends JavaPlugin{
+	
+	private static MinecraftClasses instance;
+	
+	private Set<ConfigHandler> raceSet = new HashSet<ConfigHandler>();
+	private Set<ConfigHandler> classSet = new HashSet<ConfigHandler>();
 	
 	Methods methods = new Methods(this);
 	PlayerListener playerlistener = new PlayerListener(this); 
 	PlayerDeathListener deathlistener = new PlayerDeathListener(this); 
-	public static Main plugin;
+	public static MinecraftClasses plugin;
 	public boolean raceSelected;
 	public String race;
 	public String userClass = "**";
 	public String userSubClass = "**";
-	public final Logger logger = Logger.getLogger("Minecraft");
 	public String prefix = "[Minecraft Classes]";
 	public String dieConfig;
 	
 	//This is what happens when the plugin is enabled
 	@Override
 	public void onEnable(){
-		getConfig().options().copyDefaults(true);
-		saveConfig();
-		PluginDescriptionFile pdfFile = this.getDescription();
-		this.logger.info(prefix + " Version " + pdfFile.getVersion() + " has been enabled!");
+		instance = this;
+		saveDefaultConfig();
+		getLogger().info("Minecraft Classes Version " + getDescription().getVersion() + " has been enabled!");
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(this), this);
 		dieConfig = getConfig().getString("Die");
+		loadFiles();
 	}
 	//This is what happens when the plugin is disabled
 	@Override
 	public void onDisable(){
-		PluginDescriptionFile pdfFile = this.getDescription();
-		this.logger.info(prefix + " Version " + pdfFile.getVersion() + " has been disabled!");
+		getLogger().info("Minecraft Classes Version " + getDescription().getVersion() + " has been disabled!");
+	}
+	
+	//Allows access to the main class
+	public static MinecraftClasses getInstance() {
+		return instance;
+	}
+	
+	private void loadFiles() {
+		File classes = new File(getDataFolder(), "Classes");
+		File races = new File(getDataFolder(), "Races");
+		if (!classes.exists()) {
+			classes.mkdirs();
+		}
+		if (!races.exists()) {
+			races.mkdirs();
+		}
+		for (File f : classes.listFiles()) {
+			classSet.add(new ConfigHandler(f));
+		}
+		for (File f : races.listFiles()) {
+			raceSet.add(new ConfigHandler(f));
+		}
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String Label, String[] args){

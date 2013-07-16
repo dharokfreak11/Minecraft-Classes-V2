@@ -2,7 +2,7 @@ package me.jestercraftgaming.classes.listeners;
 
 import java.util.List;
 
-import me.jestercraftgaming.classes.Main;
+import me.jestercraftgaming.classes.MinecraftClasses;
 import me.jestercraftgaming.classes.config.PlayerConfigHandler;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,12 +13,12 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerDeathListener implements Listener {
 	
-	Main main;
+	MinecraftClasses main;
 	public String playerKilled;
 	
 	
 	
-	public PlayerDeathListener(Main main){
+	public PlayerDeathListener(MinecraftClasses main){
 		main = this.main;
 	}
 	

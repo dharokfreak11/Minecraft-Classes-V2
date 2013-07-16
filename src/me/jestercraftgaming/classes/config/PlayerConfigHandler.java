@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import me.jestercraftgaming.classes.Main;
+import me.jestercraftgaming.classes.MinecraftClasses;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,7 +21,7 @@ public class PlayerConfigHandler {
 	 *            The player to get the config for
 	 * @return The player's FileConfiguration
 	 */
-	public static FileConfiguration getConfig(Main plugin, Player player) {
+	public static FileConfiguration getConfig(MinecraftClasses plugin, Player player) {
 		String fileName = player.getName() + ".yml";
 		File dataFolder = new File(plugin.getDataFolder(), "Players");
 		File configFile = new File(dataFolder, fileName);
@@ -36,7 +36,7 @@ public class PlayerConfigHandler {
 	 * @param player
 	 *            The player to save the config for
 	 */
-	public static void saveConfig(Main plugin, Player player,
+	public static void saveConfig(MinecraftClasses plugin, Player player,
 			FileConfiguration cfg) {
 		String fileName = player.getName() + ".yml";
 		File dataFolder = new File(plugin.getDataFolder(), "Players");
@@ -58,7 +58,7 @@ public class PlayerConfigHandler {
 	 * @param player
 	 *            The player to save the default config for
 	 */
-	public static void saveDefaultConfig(Main plugin, Player player) {
+	public static void saveDefaultConfig(MinecraftClasses plugin, Player player) {
 		String fileName = player.getName() + ".yml";
 		File dataFolder = new File(plugin.getDataFolder(), "Players");
 		dataFolder.mkdirs();

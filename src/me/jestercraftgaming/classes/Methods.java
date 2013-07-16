@@ -1,16 +1,15 @@
 package me.jestercraftgaming.classes;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Methods {
-    Main main;
+    MinecraftClasses main;
 	private String Race;
 	private String Class;
 	private String subClass;
 	//Constructor
-	public Methods(Main main){
+	public Methods(MinecraftClasses main){
 		this.main = main;
 	}
 	//Gets the race
