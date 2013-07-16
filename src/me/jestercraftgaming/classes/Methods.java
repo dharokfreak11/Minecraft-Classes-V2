@@ -35,11 +35,13 @@ public class Methods {
 		}
 			
 	}
+	//Gets the players class
 	public void getUserClass() {
 		Class = main.userClass;
 		subClass = main.userSubClass;
 		getClassAttributes();
 	}
+	//Gets the classes stats/abilities
 	public void getClassAttributes() {
 		if(Class.equals("Warrior")){
 			getClassSubAttributes(null);
@@ -54,6 +56,7 @@ public class Methods {
 		}
 		
 	}
+	//Gets the sub-classes abilities
 	public void getClassSubAttributes(CommandSender sender) {
 		Player player = (Player) sender;
 		if(subClass.equals("Fury")){
