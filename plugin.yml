@@ -2,7 +2,7 @@ name: Minecraft Classes
 main: me.jestercraftgaming.classes.Main
 version: 1.7
 description: >
-             Minecraft Classes adds a whole lot of comands for your roleplay needs.
+             Minecraft Classes adds a whole lot of commands for your roleplay needs.
 commands:
     MinecraftClasses:
       description: Full info for MinecraftClasses.
