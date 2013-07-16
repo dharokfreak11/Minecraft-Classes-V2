@@ -48,15 +48,19 @@ public class Main extends JavaPlugin{
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String Label, String[] args){
+		
 		//Checks if the sender is a player
 		if(sender instanceof Player){
 			Player player = (Player) sender;
 			FileConfiguration cfg = PlayerConfigHandler.getConfig(this, player);
+			
+			//Info Command
 			if(Label.equalsIgnoreCase("MinecraftClasses")){
 				player.sendMessage(ChatColor.AQUA + "===Minecraft-Classes===");
 				player.sendMessage(ChatColor.YELLOW + "-Description:");
 				player.sendMessage(ChatColor.DARK_RED + "-Commands:");
 			}
+			
 			//Race command
 			if(Label.equalsIgnoreCase("Race")){
 				//Checks if the player isn't selecting another race.
@@ -67,6 +71,7 @@ public class Main extends JavaPlugin{
 				        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Race <Name of race>");
 				        return true;
 					}
+					
 					//Checks for the race Human
 					if(args[0].equalsIgnoreCase("Human")){
 						if(args.length > 1){
@@ -79,6 +84,7 @@ public class Main extends JavaPlugin{
 							methods.getRace();
 						}
 					}
+					
 					//Checks for the race Orc
 					if(args[0].equalsIgnoreCase("Orc")){
 						if(args.length > 1){
@@ -91,6 +97,7 @@ public class Main extends JavaPlugin{
 							methods.getRace();
 						}
 					}
+					
 					//Checks for the race Dwarf
 					if(args[0].equalsIgnoreCase("Dwarf")){
 						if(args.length > 1){
@@ -117,6 +124,8 @@ public class Main extends JavaPlugin{
 					}
 				}
 			}
+			
+			//Class Command
 			if(Label.equalsIgnoreCase("Class")){
 				if(dieConfig.equals("true")){
 					if(!cfg.getString("Class").equals("**") || !cfg.getString("Specialization").equals("**")){
@@ -126,9 +135,11 @@ public class Main extends JavaPlugin{
 					        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Class <Name of class>");
 					        return true;
 						}
+						
+						//Checks args for Warrior
 						if(args[0].equalsIgnoreCase("Warrior")){
 							if(args.length > 1){
-								
+								player.sendMessage(ChatColor.DARK_RED + "Too many arguments! Try /Race <name of race>");
 							}else{
 								userClass = "Warrior";
 								player.sendMessage("You have selected the class " + userClass);
@@ -137,9 +148,11 @@ public class Main extends JavaPlugin{
 								player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
 							}
 						}
+						
+						//Checks args for archer
 						if(args[0].equalsIgnoreCase("Archer")){
 							if(args.length > 1){
-								
+								player.sendMessage(ChatColor.DARK_RED + "Too many arguments! Try /Race <name of race>");
 							}else{
 								userClass = "Archer";
 								player.sendMessage("You have selected the class " + userClass);
@@ -148,9 +161,11 @@ public class Main extends JavaPlugin{
 								player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
 							}
 						}
+						
+						//Checks args for mage
 						if(args[0].equalsIgnoreCase("Mage")){
 							if(args.length > 1){
-								
+								player.sendMessage(ChatColor.DARK_RED + "Too many arguments! Try /Race <name of race>");
 							}else{
 								userClass = "Mage";
 								player.sendMessage("You have selected the class " + userClass);
@@ -161,10 +176,13 @@ public class Main extends JavaPlugin{
 						}
 					}
 				}else{
+					//Checks for wrong usage
 					if(args.length == 0) {
 				        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Class <Name of class>");
 				        return true;
 					}
+					
+					//Checks args for Warrior
 					if(args[0].equalsIgnoreCase("Warrior")){
 						if(args.length > 1){
 							
@@ -176,6 +194,8 @@ public class Main extends JavaPlugin{
 							player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
 						}
 					}
+					
+					//Checks args for archer
 					if(args[0].equalsIgnoreCase("Archer")){
 						if(args.length > 1){
 							
@@ -187,6 +207,8 @@ public class Main extends JavaPlugin{
 							player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
 						}
 					}
+					
+					//Checks args for mage
 					if(args[0].equalsIgnoreCase("Mage")){
 						if(args.length > 1){
 							
@@ -201,6 +223,8 @@ public class Main extends JavaPlugin{
 				}
 				
 			}
+			
+			//Specialization Command
 			if(Label.equalsIgnoreCase("Specialization")){
 				if(args.length == 0) {
 			        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Specialization <Name of specialty>.");
