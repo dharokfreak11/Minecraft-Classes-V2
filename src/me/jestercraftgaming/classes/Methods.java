@@ -86,5 +86,11 @@ public class Methods {
 			
 		}
 	}
+	public void levelUp(){
+		
+	}
+	public void getPlayerLevel(){
+		
+	}
 	
 }
