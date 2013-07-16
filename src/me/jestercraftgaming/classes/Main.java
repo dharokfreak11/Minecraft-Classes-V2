@@ -226,10 +226,13 @@ public class Main extends JavaPlugin{
 			
 			//Specialization Command
 			if(Label.equalsIgnoreCase("Specialization")){
+				//Checks args to see if there isn't a argument
 				if(args.length == 0) {
 			        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Specialization <Name of specialty>.");
 			        return true;
 				}
+				
+				//Fury Specialization
 				if(cfg.getString("Class").equals("Warrior")){
 					if(args[0].equalsIgnoreCase("Fury")){
 						userSubClass = "Fury";
@@ -239,6 +242,8 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
+				
+				//Guard Specialization
 				if(cfg.getString("Class").equals("Warrior")){
 					if(args[0].equalsIgnoreCase("Guard")){
 						userSubClass = "Guard";
@@ -248,6 +253,8 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
+				
+				//Scout Specialization
 				if(cfg.getString("Class").equals("Archer")){
 					if(args[0].equalsIgnoreCase("Scout")){
 						userSubClass = "Scout";
@@ -257,6 +264,8 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
+				
+				//Sniper Specialization
 				if(cfg.getString("Class").equals("Archer")){
 					if(args[0].equalsIgnoreCase("Sniper")){
 						userSubClass = "Sniper";
@@ -266,6 +275,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
+				//Light Specialization
 				if(cfg.getString("Class").equals("Mage")){
 					if(args[0].equalsIgnoreCase("Light")){
 						userSubClass = "Light";
@@ -275,6 +285,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
+				//Dark Specialization
 				if(cfg.getString("Class").equals("Mage")){
 					if(args[0].equalsIgnoreCase("Dark")){
 						userSubClass = "Dark";
