@@ -3,6 +3,7 @@ package me.jestercraftgaming.classes;
 import java.util.logging.Logger;
 
 import me.jestercraftgaming.classes.config.PlayerConfigHandler;
+import me.jestercraftgaming.classes.listeners.PlayerDeathListener;
 import me.jestercraftgaming.classes.listeners.PlayerListener;
 
 import org.bukkit.Bukkit;
@@ -18,6 +19,7 @@ public class Main extends JavaPlugin{
 	
 	Methods methods = new Methods(this);
 	PlayerListener playerlistener = new PlayerListener(this); 
+	PlayerDeathListener deathlistener = new PlayerDeathListener(this); 
 	public static Main plugin;
 	public boolean raceSelected;
 	public String race;
@@ -35,6 +37,7 @@ public class Main extends JavaPlugin{
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(prefix + " Version " + pdfFile.getVersion() + " has been enabled!");
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(this), this);
 		dieConfig = getConfig().getString("Die");
 	}
 	//This is what happens when the plugin is disabled
@@ -115,50 +118,95 @@ public class Main extends JavaPlugin{
 				}
 			}
 			if(Label.equalsIgnoreCase("Class")){
-				if(args.length == 0) {
-			        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Class <Name of class>");
-			        return true;
-				}
-				if(args[0].equalsIgnoreCase("Warrior")){
-					if(args.length > 1){
-						
+				if(dieConfig.equals("true")){
+					if(!cfg.getString("Class").equals("**") || !cfg.getString("Specialization").equals("**")){
+						player.sendMessage("You may select a class when you die.");
 					}else{
-						userClass = "Warrior";
-						player.sendMessage("You have selected the class " + userClass);
-						cfg.set("Class", userClass);
-						PlayerConfigHandler.saveConfig(this, player, cfg);
-						player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+						if(args.length == 0) {
+					        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Class <Name of class>");
+					        return true;
+						}
+						if(args[0].equalsIgnoreCase("Warrior")){
+							if(args.length > 1){
+								
+							}else{
+								userClass = "Warrior";
+								player.sendMessage("You have selected the class " + userClass);
+								cfg.set("Class", userClass);
+								PlayerConfigHandler.saveConfig(this, player, cfg);
+								player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+							}
+						}
+						if(args[0].equalsIgnoreCase("Archer")){
+							if(args.length > 1){
+								
+							}else{
+								userClass = "Archer";
+								player.sendMessage("You have selected the class " + userClass);
+								cfg.set("Class", userClass);
+								PlayerConfigHandler.saveConfig(this, player, cfg);
+								player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+							}
+						}
+						if(args[0].equalsIgnoreCase("Mage")){
+							if(args.length > 1){
+								
+							}else{
+								userClass = "Mage";
+								player.sendMessage("You have selected the class " + userClass);
+								cfg.set("Class", userClass);
+								PlayerConfigHandler.saveConfig(this, player, cfg);
+								player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+							}
+						}
+					}
+				}else{
+					if(args.length == 0) {
+				        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Class <Name of class>");
+				        return true;
+					}
+					if(args[0].equalsIgnoreCase("Warrior")){
+						if(args.length > 1){
+							
+						}else{
+							userClass = "Warrior";
+							player.sendMessage("You have selected the class " + userClass);
+							cfg.set("Class", userClass);
+							PlayerConfigHandler.saveConfig(this, player, cfg);
+							player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+						}
+					}
+					if(args[0].equalsIgnoreCase("Archer")){
+						if(args.length > 1){
+							
+						}else{
+							userClass = "Archer";
+							player.sendMessage("You have selected the class " + userClass);
+							cfg.set("Class", userClass);
+							PlayerConfigHandler.saveConfig(this, player, cfg);
+							player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+						}
+					}
+					if(args[0].equalsIgnoreCase("Mage")){
+						if(args.length > 1){
+							
+						}else{
+							userClass = "Mage";
+							player.sendMessage("You have selected the class " + userClass);
+							cfg.set("Class", userClass);
+							PlayerConfigHandler.saveConfig(this, player, cfg);
+							player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
+						}
 					}
 				}
-				if(args[0].equalsIgnoreCase("Archer")){
-					if(args.length > 1){
-						
-					}else{
-						userClass = "Archer";
-						player.sendMessage("You have selected the class " + userClass);
-						cfg.set("Class", userClass);
-						PlayerConfigHandler.saveConfig(this, player, cfg);
-						player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
-					}
-				}
-				if(args[0].equalsIgnoreCase("Mage")){
-					if(args.length > 1){
-						
-					}else{
-						userClass = "Mage";
-						player.sendMessage("You have selected the class " + userClass);
-						cfg.set("Class", userClass);
-						PlayerConfigHandler.saveConfig(this, player, cfg);
-						player.sendMessage("Now select your specialization. By typing /Specialization <name of specialty>.");
-					}
-				}
+				
 			}
 			if(Label.equalsIgnoreCase("Specialization")){
 				if(args.length == 0) {
 			        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Specialization <Name of specialty>.");
 			        return true;
 				}
-				if(userClass.equals("Warrior")){
+				if(cfg.getString("Class").equals("Warrior")){
 					if(args[0].equalsIgnoreCase("Fury")){
 						userSubClass = "Fury";
 						cfg.set("Specialization", userSubClass);
@@ -167,7 +215,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("Warrior")){
+				if(cfg.getString("Class").equals("Warrior")){
 					if(args[0].equalsIgnoreCase("Guard")){
 						userSubClass = "Guard";
 						cfg.set("Specialization", userSubClass);
@@ -176,7 +224,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("Archer")){
+				if(cfg.getString("Class").equals("Archer")){
 					if(args[0].equalsIgnoreCase("Scout")){
 						userSubClass = "Scout";
 						cfg.set("Specialization", userSubClass);
@@ -185,7 +233,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("Archer")){
+				if(cfg.getString("Class").equals("Archer")){
 					if(args[0].equalsIgnoreCase("Sniper")){
 						userSubClass = "Sniper";
 						cfg.set("Specialization", userSubClass);
@@ -194,7 +242,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("Mage")){
+				if(cfg.getString("Class").equals("Mage")){
 					if(args[0].equalsIgnoreCase("Light")){
 						userSubClass = "Light";
 						cfg.set("Specialization", userSubClass);
@@ -203,7 +251,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("Mage")){
+				if(cfg.getString("Class").equals("Mage")){
 					if(args[0].equalsIgnoreCase("Dark")){
 						userSubClass = "Dark";
 						cfg.set("Specialization", userSubClass);
@@ -212,7 +260,7 @@ public class Main extends JavaPlugin{
 						player.sendMessage("Character customization complete!");
 					}
 				}
-				if(userClass.equals("**")){
+				if(cfg.getString("Class").equals("**")){
 					player.sendMessage("You need to select a class! Type /Class <name of class> to select a class.");
 				}
 			}

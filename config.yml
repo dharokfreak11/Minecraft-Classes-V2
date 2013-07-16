@@ -1,0 +1,8 @@
+##########
+# Config #
+##########
+
+## Player options
+
+# Player must die in order to select class and specialization again.
+Die: false
