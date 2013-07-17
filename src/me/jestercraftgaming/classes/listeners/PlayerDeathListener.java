@@ -14,7 +14,7 @@ public class PlayerDeathListener implements Listener {
 	MinecraftClasses main;
 	public String playerKilled;
 	
-	
+	 
 	
 	public PlayerDeathListener(MinecraftClasses main){
 		main = this.main;
@@ -22,11 +22,16 @@ public class PlayerDeathListener implements Listener {
 	
 	@EventHandler
 	public void PlayerDeathEvent(PlayerDeathEvent e){
-		Player playerKilled = e.getEntity();
-		FileConfiguration cfg = PlayerConfigHandler.getConfig(MinecraftClasses.getInstance(), playerKilled);
-		cfg.set("Class", "**");
-		cfg.set("Specialization", "**");
-		PlayerConfigHandler.saveConfig(MinecraftClasses.getInstance(), playerKilled, cfg);
+		if(main.dieConfig.equals("true")){
+			Player playerKilled = e.getEntity();
+			FileConfiguration cfg = PlayerConfigHandler.getConfig(MinecraftClasses.getInstance(), playerKilled);
+			cfg.set("Class", "**");
+			cfg.set("Specialization", "**");
+			PlayerConfigHandler.saveConfig(MinecraftClasses.getInstance(), playerKilled, cfg);
+		}else{
+			
+		}
+		
 	}
 	
 }
