@@ -314,7 +314,7 @@ public class MinecraftClasses extends JavaPlugin{
 				}
 				//Light Specialization
 				if(cfg.getString("Class").equals("Mage")){
-					if(args[0].equalsIgnoreCase("Light")){
+					if(args[0].equalsIgnoreCase("Elements")){
 						userSubClass = "Light";
 						cfg.set("Specialization", userSubClass);
 						PlayerConfigHandler.saveConfig(this, player, cfg);
@@ -324,7 +324,7 @@ public class MinecraftClasses extends JavaPlugin{
 				}
 				//Dark Specialization
 				if(cfg.getString("Class").equals("Mage")){
-					if(args[0].equalsIgnoreCase("Dark")){
+					if(args[0].equalsIgnoreCase("Arcane")){
 						userSubClass = "Dark";
 						cfg.set("Specialization", userSubClass);
 						PlayerConfigHandler.saveConfig(this, player, cfg);
