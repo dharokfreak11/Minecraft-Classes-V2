@@ -14,3 +14,5 @@ commands:
       description: Give the user the ability to select his/her class.
     Specialization:
       description: Give the user the ability to select his/her specialization.
+    Purge:
+      description: Resets other players config files.

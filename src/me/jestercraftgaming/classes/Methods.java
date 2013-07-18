@@ -53,7 +53,6 @@ public class Methods {
 		if(Class.equals("Mage")){
 			getClassSubAttributes(null);
 		}
-		
 	}
 	//Gets the sub-classes abilities
 	public void getClassSubAttributes(CommandSender sender) {

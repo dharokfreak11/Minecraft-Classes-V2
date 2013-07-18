@@ -15,6 +15,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MinecraftClasses extends JavaPlugin{
@@ -26,7 +27,8 @@ public class MinecraftClasses extends JavaPlugin{
 	
 	Methods methods = new Methods(this);
 	PlayerListener playerlistener = new PlayerListener(this); 
-	PlayerDeathListener deathlistener = new PlayerDeathListener(this); 
+	PlayerDeathListener deathlistener = new PlayerDeathListener(this);
+	Permissions perms = new Permissions();
 	public static MinecraftClasses plugin;
 	public boolean raceSelected;
 	public String race;
@@ -38,6 +40,10 @@ public class MinecraftClasses extends JavaPlugin{
 	//This is what happens when the plugin is enabled
 	@Override
 	public void onEnable(){
+		PluginManager pm = this.getServer().getPluginManager();
+		pm.addPermission(new Permissions().purge);
+		pm.addPermission(new Permissions().race);
+		pm.addPermission(new Permissions().userClass);
 		instance = this;
 		saveDefaultConfig();
 		getLogger().info("Minecraft Classes Version " + getDescription().getVersion() + " has been enabled!");
@@ -50,6 +56,10 @@ public class MinecraftClasses extends JavaPlugin{
 	@Override
 	public void onDisable(){
 		getLogger().info("Minecraft Classes Version " + getDescription().getVersion() + " has been disabled!");
+		PluginManager pm = this.getServer().getPluginManager();
+		pm.removePermission(perms.purge);
+		pm.removePermission(perms.race);
+		pm.removePermission(perms.userClass);
 	}
 	
 	//Allows access to the main class
@@ -324,6 +334,48 @@ public class MinecraftClasses extends JavaPlugin{
 				}
 				if(cfg.getString("Class").equals("**")){
 					player.sendMessage("You need to select a class! Type /Class <name of class> to select a class.");
+				}
+			}
+			if(Label.equalsIgnoreCase("Purge")){
+				if(player.hasPermission(perms.purge)){
+					if(args.length == 0) {
+				        sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Purge [type of purge] <Name of player>.");
+				        return true;
+					}
+					if(args.length < 2){
+						sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Purge [type of purge] <Name of player>.");
+				        return true;
+					}
+					if(args.length > 2){
+						sender.sendMessage(ChatColor.DARK_RED + "Wrong usage! Try /Purge [type of purge] <Name of player>.");
+				        return true;
+					}
+					if(args[0].equalsIgnoreCase("Race")){ 
+						Player targetPlayer = player.getServer().getPlayer(args[1]);
+						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
+						cfgTarget.set("Race", "**");
+						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+					}
+					if(args[0].equalsIgnoreCase("Class")){
+						Player targetPlayer = player.getServer().getPlayer(args[1]);
+						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
+						cfgTarget.set("Class", "**");
+						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+					}
+					if(args[0].equalsIgnoreCase("Specialization")){
+						Player targetPlayer = player.getServer().getPlayer(args[1]);
+						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
+						cfgTarget.set("Specialization", "**");
+						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+					}
+					if(args[0].equalsIgnoreCase("All")){
+						Player targetPlayer = player.getServer().getPlayer(args[1]);
+						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
+						cfgTarget.set("Race", "**");
+						cfgTarget.set("Class", "**");
+						cfgTarget.set("Specialization", "**");
+						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+					}
 				}
 			}
 		}
