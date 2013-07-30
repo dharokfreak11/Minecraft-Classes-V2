@@ -355,18 +355,21 @@ public class MinecraftClasses extends JavaPlugin{
 						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
 						cfgTarget.set("Race", "**");
 						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+						player.sendMessage("Player's race has been purged.");
 					}
 					if(args[0].equalsIgnoreCase("Class")){
 						Player targetPlayer = player.getServer().getPlayer(args[1]);
 						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
 						cfgTarget.set("Class", "**");
 						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+						player.sendMessage("Player's class has been purged.");
 					}
 					if(args[0].equalsIgnoreCase("Specialization")){
 						Player targetPlayer = player.getServer().getPlayer(args[1]);
 						FileConfiguration cfgTarget = PlayerConfigHandler.getConfig(this, targetPlayer);
 						cfgTarget.set("Specialization", "**");
 						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+						player.sendMessage("Player's specialization has been purged.");
 					}
 					if(args[0].equalsIgnoreCase("All")){
 						Player targetPlayer = player.getServer().getPlayer(args[1]);
@@ -375,6 +378,7 @@ public class MinecraftClasses extends JavaPlugin{
 						cfgTarget.set("Class", "**");
 						cfgTarget.set("Specialization", "**");
 						PlayerConfigHandler.saveConfig(this, targetPlayer, cfgTarget);
+						player.sendMessage("Player has been purged of all data.");
 					}
 				}
 			}
