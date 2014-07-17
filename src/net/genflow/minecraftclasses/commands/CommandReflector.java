@@ -14,7 +14,7 @@ public class CommandReflector{
 		this.mcClasses = mcClasses;
 	}
 	
-	String error = "===[" + ChatColor.AQUA + "Kingdoms" + ChatColor.WHITE + "]===\n" + ChatColor.RED + "[ERROR] - That command does not exist!";
+	String error = "===[" + ChatColor.AQUA + "Minecraft-Classes" + ChatColor.WHITE + "]===\n" + ChatColor.RED + "[ERROR] - That command does not exist!";
 
 	public CommandReflector(String commandName, Command command ,CommandSender sender, String[] args){
 		checkCommand(commandName, command, sender, args);
@@ -22,9 +22,9 @@ public class CommandReflector{
 
 	//Checks the command.
 	private void checkCommand(String commandName, Command command, CommandSender sender, String[] args){
-		if(commandName.equalsIgnoreCase("Kingdoms")){
+		if(commandName.equalsIgnoreCase("Race")){
 			new RaceCommand(commandName, command, sender, args);
-		}else if(commandName.equalsIgnoreCase("Guilds")){
+		}else if(commandName.equalsIgnoreCase("Class")){
 			new ClassCommand(commandName, command, sender, args);
 		}else{
 			sender.sendMessage(error);
