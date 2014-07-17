@@ -45,5 +45,12 @@ public class SettingsHandler{
 		ConfigHandler.saveDefaultConfig(mcClasses, cfg);
 	}
 
+	//Sets whether death-mode are enabled or not.
+	public void setDeathMode(boolean mode){
+		FileConfiguration cfg = ConfigHandler.getDefaultConfig(mcClasses);
+		cfg.getConfigurationSection("Settings").getConfigurationSection("Gameplay-Settings").set("Death-Reset-Enabled", mode);
+		ConfigHandler.saveDefaultConfig(mcClasses, cfg);
+	}
+
 
 }
